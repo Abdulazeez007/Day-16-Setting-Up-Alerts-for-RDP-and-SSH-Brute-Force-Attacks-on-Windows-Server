@@ -14,7 +14,7 @@ To begin, we will set up an alert for RDP brute force attempts by analyzing auth
 ### 1.2 Filter for RDP Failed Logins
 To narrow down the logs to only show activity from your Windows server, filter by the server’s name. 
 
-In this case, I’m selecting **Phoenix-WIN-Phoenixrocks** as the server to monitor.
+In this case, I’m selecting **aurora-WIN-aurora** as the server to monitor.
 
 Now, since we’re looking for brute force attempts, let’s focus on Event ID 4625, which logs every failed login attempt. In the search bar, type the following query:
 
@@ -58,7 +58,7 @@ While the RDP brute force alert is now live, we also need to monitor SSH brute f
 - For the index pattern, leave it as is. In the custom query field, enter the following query:
 
 ```bash
-system.auth.ssh.event: * AND agent.name: Pheonix-Linux-Pheonixrocks AND system.auth.ssh.event: Failed AND user.name: root
+system.auth.ssh.event: * AND agent.name: aurora-Linux-aurora AND system.auth.ssh.event: Failed AND user.name: root
 ```
 - For the group by fields, select both **user.name** and **source.ip**.
 - Set the threshold to 5, meaning if 5 failed login attempts happen within a specified time frame, the rule will trigger.
